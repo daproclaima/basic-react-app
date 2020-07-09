@@ -10,6 +10,7 @@ class App extends Component {
           <h1>React application</h1>
         </div>
         <h2>Second title</h2>
+        <h3>Third title</h3>
       </Fragment>
     )
   }
