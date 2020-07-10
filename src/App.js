@@ -1,19 +1,23 @@
 import React, { Component, Fragment } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import Member from './components/Member'
 class App extends Component {
   render () {
+    const {title} = this.props
     return (
       <Fragment>
         <div className="App">
-          <h1>React application</h1>
+          <h1>{title}</h1>
+          <Member name='Seb'/>
+          <Member name='Laura'/>
+          <Member name='Patricia'/>
+          <Member name='Iréné'>
+            <strong> My father.</strong>
+          </Member>
         </div>
-        <h2>Second title</h2>
-        <h3>Third title</h3>
       </Fragment>
     )
   }
 }
 
-export default App;
+export default App
