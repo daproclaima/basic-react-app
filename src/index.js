@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App title='Markdown app'/>
+    <App title='Basic React App'/>
   </React.StrictMode>,
   document.getElementById('root')
 );
