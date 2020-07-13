@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Member from './components/Member'
+import Button from './components/Button'
 
 const family = {
   member1: {
@@ -24,10 +25,21 @@ class App extends Component {
   state = {
     family
   }
-  handleClick = () => {
-      let localFamily = { ...this.state.family }
-      family.member1.age += 1
-      this.setState({family: localFamily})
+  handleClick = num => {
+      // console.log(this.state.family)
+      // console.log({...this.state.family})
+      //gives {this.state.family.member1, this.state.family.member2...}
+
+      let family = { ...this.state.family }
+      family.member1.age += num
+      this.setState({family: family})
+  }
+  handleChange = event => {
+    let family = { ...this.state.family }
+    const name = event.target.value
+    console.log(name)
+    family.member1.name = name
+    this.setState({family: family})
   }
   render () {
     const {title} = this.props
@@ -35,6 +47,7 @@ class App extends Component {
     return (
         <div className="App">
           <h1>{title}</h1>
+            <input value={family.member1.name} onChange={this.handleChange} type="text" />
           <Member
               age={family.member1.age}
               name={family.member1.name} >
@@ -51,7 +64,7 @@ class App extends Component {
               name={family.member4.name} >
             <strong> My father</strong>
           </Member>
-          <button onClick={this.handleClick}>Getting older</button>
+            <Button getOlder={() => this.handleClick(2)} />
         </div>
     )
   }
