@@ -51,6 +51,13 @@ class App extends Component {
   render () {
     const {title} = this.props
     const {family, isDescriptionShow} = this.state
+
+    let description = null
+
+    if (isDescriptionShow) {
+      description = <strong> My father</strong>
+    }
+
     return (
         <div className="App">
           <h1>{title}</h1>
@@ -69,9 +76,7 @@ class App extends Component {
           <Member
               age={family.member4.age}
               name={family.member4.name} >
-            {
-              isDescriptionShow ? <strong> My father</strong> : null
-            }
+            { description }
             <button onClick={this.handleShowDescription}>
               {
                 isDescriptionShow ? 'Hide' : 'Show'
