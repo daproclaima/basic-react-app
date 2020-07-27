@@ -23,7 +23,8 @@ const family = {
 }
 class App extends Component {
   state = {
-    family
+    family,
+    isDescriptionShow: false
   }
   handleClick = num => {
       // console.log(this.state.family)
@@ -41,9 +42,15 @@ class App extends Component {
     family.member1.name = name
     this.setState({family: family})
   }
+
+  handleShowDescription = () => {
+    const isDescriptionShow = !this.state.isDescriptionShow
+    this.setState({ isDescriptionShow })
+  }
+
   render () {
     const {title} = this.props
-    const {family} = this.state
+    const {family, isDescriptionShow} = this.state
     return (
         <div className="App">
           <h1>{title}</h1>
@@ -62,7 +69,15 @@ class App extends Component {
           <Member
               age={family.member4.age}
               name={family.member4.name} >
-            <strong> My father</strong>
+            {
+              isDescriptionShow ? <strong> My father</strong> : null
+            }
+            <button onClick={this.handleShowDescription}>
+              {
+                isDescriptionShow ? 'Hide' : 'Show'
+              }
+            </button>
+            
           </Member>
             <Button getOlder={() => this.handleClick(2)} />
         </div>
