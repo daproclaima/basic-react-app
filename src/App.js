@@ -58,22 +58,21 @@ class App extends Component {
       description = <strong> My father</strong>
     }
 
+    const list = Object.keys(family)
+      .map(member => (
+        <Member
+              age={family[member].age}
+              name={family[member].name} >
+        </Member>
+      ))
+    console.log(list)
+
     return (
         <div className="App">
           <h1>{title}</h1>
-            <input value={family.member1.name} onChange={this.handleChange} type="text" />
-          <Member
-              age={family.member1.age}
-              name={family.member1.name} >
-            Myself
-          </Member>
-          <Member
-              age={family.member2.age}
-              name={family.member2.name} />
-          <Member
-              age={family.member3.age}
-              name={family.member3.name} />
-          <Member
+          <input value={family.member1.name} onChange={this.handleChange} type="text" />
+          {list}
+          { /*<Member
               age={family.member4.age}
               name={family.member4.name} >
             { description }
@@ -83,7 +82,7 @@ class App extends Component {
               }
             </button>
             
-          </Member>
+          </Member>*/}
             <Button getOlder={() => this.handleClick(2)} />
         </div>
     )
