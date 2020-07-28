@@ -33,14 +33,20 @@ class App extends Component {
 
       let family = { ...this.state.family }
       family.member1.age += num
-      this.setState({family: family})
+      this.setState({ family })
   }
   handleChange = event => {
     let family = { ...this.state.family }
     const name = event.target.value
     console.log(name)
     family.member1.name = name
-    this.setState({family: family})
+    this.setState({ family })
+  }
+
+  hideName = id => {
+    let family = { ...this.state.family }
+    family[id].name = 'X'
+    this.setState({ family })
   }
 
   handleShowDescription = () => {
@@ -59,10 +65,12 @@ class App extends Component {
     }
 
     const list = Object.keys(family)
-      .map(member => (
+      .map((member) => (
         <Member
-              age={family[member].age}
-              name={family[member].name} >
+          key={member}
+          hideName={() => this.hideName(member)}
+          age={family[member].age}
+          name={family[member].name} >
         </Member>
       ))
     console.log(list)
@@ -71,7 +79,7 @@ class App extends Component {
         <div className="App">
           <h1>{title}</h1>
           <input value={family.member1.name} onChange={this.handleChange} type="text" />
-          {list}
+          { list }
           { /*<Member
               age={family.member4.age}
               name={family.member4.name} >
