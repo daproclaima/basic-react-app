@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './App.css'
 import Member from './components/Member'
 import Button from './components/Button'
@@ -26,19 +26,18 @@ class App extends Component {
     family,
     isDescriptionShow: false
   }
-  handleClick = num => {
+  handleClick = (num, member) => {
       // console.log(this.state.family)
       // console.log({...this.state.family})
       //gives {this.state.family.member1, this.state.family.member2...}
 
       let family = { ...this.state.family }
-      family.member1.age += num
+      family[member].age += num
       this.setState({ family })
   }
   handleChange = (event, member) => {
     let family = { ...this.state.family }
     const name = event.target.value
-    console.log(name)
     family[member].name = name
     this.setState({ family })
   }
@@ -66,15 +65,16 @@ class App extends Component {
 
     const list = Object.keys(family)
       .map((member) => (
-        <Member
-          key={member}
-          handleChange={event => this.handleChange(event, member)}
-          hideName={() => this.hideName(member)}
-          age={family[member].age}
-          name={family[member].name} >
-        </Member>
+        <Fragment  key={member}>
+          <Member
+            handleChange={event => this.handleChange(event, member)}
+            hideName={() => this.hideName(member)}
+            age={family[member].age}
+            name={family[member].name} >
+          </Member>
+          <Button getOlder={() => this.handleClick(2, member)} />
+        </Fragment>
       ))
-    console.log(list)
 
     return (
         <div className="App">
@@ -91,7 +91,6 @@ class App extends Component {
             </button>
             
           </Member>*/}
-            <Button getOlder={() => this.handleClick(2)} />
         </div>
     )
   }
