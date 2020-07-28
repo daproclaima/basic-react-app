@@ -69,9 +69,12 @@ class App extends Component {
           <Member
             handleChange={event => this.handleChange(event, member)}
             hideName={() => this.hideName(member)}
+            handleShowDescription={() => this.handleShowDescription()}
+            isDescriptionShow = {this.isDescriptionShow}
             age={family[member].age}
             name={family[member].name} >
           </Member>
+          { description }
           <Button getOlder={() => this.handleClick(2, member)} />
         </Fragment>
       ))
@@ -80,17 +83,6 @@ class App extends Component {
         <div className="App">
           <h1>{title}</h1>
           { list }
-          { /*<Member
-              age={family.member4.age}
-              name={family.member4.name} >
-            { description }
-            <button onClick={this.handleShowDescription}>
-              {
-                isDescriptionShow ? 'Hide' : 'Show'
-              }
-            </button>
-            
-          </Member>*/}
         </div>
     )
   }
